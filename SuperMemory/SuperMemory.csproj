@@ -1,0 +1,865 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{07C6A8D0-4FB2-4784-B8D8-0DB0F7B3F19D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SuperMemory</RootNamespace>
+    <AssemblyName>SuperMemory</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevComponents.DotNetBar.Design, Version=8.7.0.3, Culture=neutral, PublicKeyToken=7f2b5af6db258e2f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\DevComponents.DotNetBar.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevComponents.DotNetBar2, Version=8.7.0.3, Culture=neutral, PublicKeyToken=7f2b5af6db258e2f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\DevComponents.DotNetBar2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v8.3, Version=8.3.5.0, Culture=neutral, PublicKeyToken=674419d37df23133, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\DevExpress.Utils.v8.3.DLL</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite, Version=1.0.66.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TeeChart, Version=3.2.2697.18420, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\TeeChart\TeeChart.dll</HintPath>
+    </Reference>
+    <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=2.2.2864.18696, Culture=neutral, PublicKeyToken=d481317c817cec47, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Entities\CExam.cs" />
+    <Compile Include="Entities\CExamLevel.cs" />
+    <Compile Include="Entities\CPicChoiceMeaningReport.cs" />
+    <Compile Include="Entities\CPile.cs" />
+    <Compile Include="Entities\CPileType.cs" />
+    <Compile Include="Enums\EnumPileDataFiled.cs" />
+    <Compile Include="Enums\EnumTranscodingType.cs" />
+    <Compile Include="Model\Biz\Common\C2PilesMatchVerifierImpl.cs" />
+    <Compile Include="Model\Biz\Common\PileForwardOrderControl\CPileForwardOrderControllerRandOrderNotLoop.cs" />
+    <Compile Include="Model\Biz\Common\PileForwardOrderControl\IPileForwardOrderOwnerController.cs" />
+    <Compile Include="Model\Biz\Common\PileForwardPlayer\CPileForwardPlayerBase.cs" />
+    <Compile Include="Model\Biz\Common\I2PilesMatchVerifyResultObserver.cs" />
+    <Compile Include="Model\Biz\Exam\CExamDataLoaderImpl.cs" />
+    <Compile Include="Model\Biz\Exam\CExamInfoImpl.cs" />
+    <Compile Include="Model\Biz\Exam\CExamLevel1GroupImpl.cs" />
+    <Compile Include="Model\Biz\Exam\CExamLevel1GroupInfoImpl.cs" />
+    <Compile Include="Model\Biz\Exam\CExamLevelInfoImpl.cs" />
+    <Compile Include="Model\Biz\Exam\CLevelGroupsDataGenerator.cs" />
+    <Compile Include="Model\DB\Exam\CTableExam.cs" />
+    <Compile Include="Model\DB\Exam\CTableExamLevel.cs" />
+    <Compile Include="Views\CViewsMgr.cs" />
+    <Compile Include="Model\Biz\Exam\CExamLevelImpl.cs" />
+    <Compile Include="Model\Biz\Exam\CExamLevelsMgrImpl.cs" />
+    <Compile Include="Model\Biz\Exam\CExamMgrBiz.cs" />
+    <Compile Include="Model\Biz\Common\I2PilesMatchVerifier.cs" />
+    <Compile Include="Model\Biz\Exam\IExamDataLoader.cs" />
+    <Compile Include="Model\Biz\Exam\IExamInfo.cs" />
+    <Compile Include="Model\Biz\Exam\IExamLevel.cs" />
+    <Compile Include="Model\Biz\Exam\IExamLevel1Group.cs" />
+    <Compile Include="Model\Biz\Exam\IExamLevel1GroupInfo.cs" />
+    <Compile Include="Model\Biz\Exam\IExamLevelInfo.cs" />
+    <Compile Include="Model\Biz\Exam\IExamLevelsMgr.cs" />
+    <Compile Include="Model\Biz\Exam\IExamView.cs" />
+    <Compile Include="Model\Biz\Exam\IGroupPilesMgr.cs" />
+    <Compile Include="Model\Biz\Exam\ILevelGroupsMgr.cs" />
+    <Compile Include="Model\Biz\MemoryMethodIntroduction\Common\CTrainningResult.cs" />
+    <Compile Include="Model\Biz\MemoryMethodIntroduction\Common\ITrainningResultView.cs" />
+    <Compile Include="Model\Biz\MemoryMethodIntroduction\FlashCardGear\PlayControl\EnumPlayPileSteps.cs" />
+    <Compile Include="Model\Biz\MemoryMethodIntroduction\FlashCardGear\PlayControl\EnumPlayPileOrderStates.cs" />
+    <Compile Include="FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Global\CGlobal.cs" />
+    <Compile Include="Model\Biz\CBizMgr.cs" />
+    <Compile Include="Model\Biz\DataMgr\CDataMgrBiz.cs" />
+    <Compile Include="Model\Biz\DataMgr\PilesDataMgr\CPilesDataMgrBiz.cs" />
+    <Compile Include="Model\Biz\DataMgr\PilesDataMgr\CPileTypeCreator.cs" />
+    <Compile Include="Model\Biz\MemoryMethodIntroduction\CMemoryMethodIntroductionBiz.cs" />
+    <Compile Include="Model\Biz\MemoryMethodIntroduction\FlashCardGear\CPilesFlashCardGearBiz.cs" />
+    <Compile Include="Model\Biz\MemoryMethodIntroduction\Common\CPilesOrderAreaSet.cs" />
+    <Compile Include="Model\Biz\MemoryMethodIntroduction\FlashCardGear\CPlayCondition.cs" />
+    <Compile Include="Model\Biz\MemoryMethodIntroduction\FlashCardGear\CPlayController.cs" />
+    <Compile Include="Model\Biz\MemoryMethodIntroduction\FlashCardGear\PlayControl\CPlayGroupController.cs" />
+    <Compile Include="Model\Biz\Common\PileForwardOrderControl\CPileForwardOrderControllerBase.cs" />
+    <Compile Include="Model\Biz\Common\PileForwardOrderControl\CPileForwardOrderControllerForwardOrder.cs" />
+    <Compile Include="Model\Biz\Common\PileForwardOrderControl\CPileForwardOrderControllerRandOrder.cs" />
+    <Compile Include="Model\Biz\Common\PileForwardOrderControl\CPileForwardOrderControllerReverseOrder.cs" />
+    <Compile Include="Model\Biz\MemoryMethodIntroduction\FlashCardGear\PlayControl\PlayGroupControl\CPlayPileControllersStore.cs" />
+    <Compile Include="Model\Biz\MemoryMethodIntroduction\FlashCardGear\PlayControl\PlayGroupControl\CPlayStepController.cs" />
+    <Compile Include="Model\Biz\Common\PileForwardOrderControl\IPileForwardOrderController.cs" />
+    <Compile Include="Model\Biz\MemoryMethodIntroduction\PicChoiceMeaning\CChoicesMgr.cs" />
+    <Compile Include="Model\Biz\MemoryMethodIntroduction\PicChoiceMeaning\CPicChoiceMeaningBiz.cs" />
+    <Compile Include="Model\Biz\MemoryMethodIntroduction\PicChoiceMeaning\CPilesCopyUtil.cs" />
+    <Compile Include="Model\Biz\MemoryMethodIntroduction\PicChoiceMeaning\CTimingContorller.cs" />
+    <Compile Include="Model\Biz\MemoryMethodIntroduction\Common\CTrainningSet.cs" />
+    <Compile Include="Model\Biz\MemoryMethodIntroduction\PicChoiceMeaning\IChoicePilesGroupView.cs" />
+    <Compile Include="Model\Biz\MemoryMethodIntroduction\PicChoiceMeaning\IChoicePileView.cs" />
+    <Compile Include="Model\Biz\MemoryMethodIntroduction\PicChoiceMeaning\IFormPicChoice.cs" />
+    <Compile Include="Model\Biz\MemoryMethodIntroduction\PicChoiceMeaning\ISecTickerView.cs" />
+    <Compile Include="Model\Biz\MemoryMethodIntroduction\PicChoiceMeaning\IPilePicView.cs" />
+    <Compile Include="Model\Biz\MemoryMethodIntroduction\PicChoiceMeaning\ITimingControllerObserver.cs" />
+    <Compile Include="Model\Biz\MemoryMethodIntroduction\PilesLearn\CPilesLearnBiz.cs" />
+    <Compile Include="Model\Biz\MemoryMethodIntroduction\Transcoding\CAnswerVerifier.cs" />
+    <Compile Include="Model\Biz\MemoryMethodIntroduction\Transcoding\CGroupsMgr.cs" />
+    <Compile Include="Model\Biz\MemoryMethodIntroduction\Transcoding\CPilesMgr.cs" />
+    <Compile Include="Model\Biz\MemoryMethodIntroduction\Transcoding\CTranscodingBiz.cs" />
+    <Compile Include="Model\Biz\MemoryMethodIntroduction\Transcoding\IAnswerVerifier.cs" />
+    <Compile Include="Model\Biz\MemoryMethodIntroduction\Transcoding\IGroupsMgr.cs" />
+    <Compile Include="Model\Biz\MemoryMethodIntroduction\Transcoding\IPilesMgr.cs" />
+    <Compile Include="Model\Biz\MemoryMethodIntroduction\Transcoding\ITranscodingBiz.cs" />
+    <Compile Include="Model\CModelMgr.cs" />
+    <Compile Include="Model\DB\CDBMgr.cs" />
+    <Compile Include="Model\DB\Common\CDbBase.cs" />
+    <Compile Include="Model\DB\TablePileType\CTablePileType.cs" />
+    <Compile Include="Model\DB\TablePile\CTablePile.cs" />
+    <Compile Include="Model\Utils\CTimerUtil.cs" />
+    <Compile Include="Model\Utils\CUtilFunctions.cs" />
+    <Compile Include="Model\Utils\ISubTimer.cs" />
+    <Compile Include="Partten\Observer\CObeservableBase.cs" />
+    <Compile Include="Partten\Observer\IObserver.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormMain.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Forms\Common\BaseDockingForm.resx">
+      <DependentUpon>BaseDockingForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Forms\Common\DlgTrainningBase.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DlgTrainningBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Forms\DataMgr\FormNewPileType.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormNewPileType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Forms\DataMgr\FormPilesDataMgr.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormPilesDataMgr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Forms\MemoryMethodIntroduction\FormPicChoiceMeaning.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormPicChoiceMeaning.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Forms\MemoryMethodIntroduction\FormFlashCardGear.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormFlashCardGear.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Forms\MemoryMethodIntroduction\FormPilesExam.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormPilesExam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Forms\MemoryMethodIntroduction\FormPilesLearn.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormPilesLearn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Forms\MemoryMethodIntroduction\FormTranscoding.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormTranscoding.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Forms\MemoryMethodIntroduction\PicChoiceMeaning\DlgPicChoicePileAction.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DlgPicChoicePileAction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Forms\MemoryMethodIntroduction\PicChoiceMeaning\DlgPicChoicePileBase.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DlgPicChoicePileBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Forms\MemoryMethodIntroduction\PicChoiceMeaning\DlgPicChoicePileRole.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DlgPicChoicePileRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Forms\MemoryMethodIntroduction\PicChoiceMeaning\DlgPicChoicePileWord.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DlgPicChoicePileWord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Forms\MemoryMethodIntroduction\PicChoiceMeaning\DlgReportTrainning.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DlgReportTrainning.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Forms\MemoryMethodIntroduction\PicChoiceMeaning\FadeOutPromptChoiceResult.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FadeOutPromptChoiceResult.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Forms\MemoryMethodIntroduction\Transcoding\DlgTranscodingBase.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DlgTranscodingBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Forms\MemoryMethodIntroduction\Transcoding\DlgTranscodingNum2Action.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DlgTranscodingNum2Action.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Forms\MemoryMethodIntroduction\Transcoding\DlgTranscodingNum2Role.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DlgTranscodingNum2Role.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Forms\MemoryMethodIntroduction\Transcoding\DlgTranscodingNum2Word.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DlgTranscodingNum2Word.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Forms\MemoryMethodIntroduction\Transcoding\DlgTranscodingPic2Action.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DlgTranscodingPic2Action.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Forms\MemoryMethodIntroduction\Transcoding\DlgTranscodingPic2Num.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DlgTranscodingPic2Num.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Forms\MemoryMethodIntroduction\Transcoding\DlgTranscodingPic2Role.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DlgTranscodingPic2Role.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Forms\MemoryMethodIntroduction\Transcoding\DlgTranscodingPic2Word.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DlgTranscodingPic2Word.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Forms\MemoryMethodIntroduction\Transcoding\DlgTranscodingWord2Action.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DlgTranscodingWord2Action.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Forms\MemoryMethodIntroduction\Transcoding\DlgTranscodingWord2Role.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DlgTranscodingWord2Role.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControls\Common\UcColorPercentProgresser.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UcColorPercentProgresser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControls\Common\UcLeafPileTypesSelector.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UcLeafPileTypesSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControls\Common\UcPileViewBase.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UcPileViewBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControls\DataMgr\Exam\UcExamLevels.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UcExamLevels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControls\DataMgr\Exam\UcExamTree.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UcExamTree.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControls\DataMgr\Exam\UcLevelDetail.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UcLevelDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControls\DataMgr\UcNewPileType.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UcNewPileType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControls\DataMgr\UcPilesDataMgr.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UcPilesDataMgr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\PlayConditionSet\UcCbbSetBase.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UcCbbSetBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControls\Common\UcPileOrderAreaSet.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UcPileOrderAreaSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\PlayConditionSet\UcPlayGroupAmountSet.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UcPlayGroupAmountSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\PlayConditionSet\UcPlayPrioritySet.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UcPlayPrioritySet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\PlayControl\UcPlayController.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UcPlayController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\PlayProgress\UcProgresserBase.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UcProgresserBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\PlayProgress\UcTraningProgresser.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UcTraningProgresser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\UcPileGroupOne.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UcPileGroupOne.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\UcPileGroupThree.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UcPileGroupThree.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\UcPileGroupTwo.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UcPileGroupTwo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\UcPilesFlashCardGear.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UcPilesFlashCardGear.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\PlayConditionSet\UcPlayOrderSet.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UcPlayOrderSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\UcPileView.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UcPileView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControls\MemoryMethodIntroduction\PicChoiceMeaning\UcChoiceGroup.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UcChoiceGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControls\MemoryMethodIntroduction\PicChoiceMeaning\UcChoiceOne.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UcChoiceOne.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControls\MemoryMethodIntroduction\PicChoiceMeaning\UcGroupCountDownViewAlpha.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UcGroupCountDownViewAlpha.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControls\MemoryMethodIntroduction\PicChoiceMeaning\UcPicChoicePileChoicePart.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UcPicChoicePileChoicePart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControls\MemoryMethodIntroduction\PicChoiceMeaning\UcPicChoicePileMain.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UcPicChoicePileMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControls\MemoryMethodIntroduction\PicChoiceMeaning\UcPilePicView.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UcPilePicView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControls\MemoryMethodIntroduction\PilesLearn\UcPielsLearn.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UcPielsLearn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControls\MemoryMethodIntroduction\PicChoiceMeaning\UcPicChoiceMeaningSetting.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UcPicChoiceMeaningSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControls\Common\UcRadioPileViewBase.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UcRadioPileViewBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControls\MemoryMethodIntroduction\Transcoding\UcBottomPilesGroup.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UcBottomPilesGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControls\MemoryMethodIntroduction\Transcoding\UcTopPilesGroup.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UcTopPilesGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControls\MemoryMethodIntroduction\Transcoding\UcTranscodingPanelBase.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UcTranscodingPanelBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControls\MemoryMethodIntroduction\Transcoding\UcTranscodingPart.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UcTranscodingPart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControls\MemoryMethodIntroduction\Transcoding\UcTranscodingSetting.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UcTranscodingSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Utils\CIDGenerator.cs" />
+    <Compile Include="Utils\COtherUtils.cs" />
+    <Compile Include="Utils\CStringUtils.cs" />
+    <Compile Include="Views\Forms\Common\BaseDockingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Forms\Common\BaseDockingForm.Designer.cs">
+      <DependentUpon>BaseDockingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Forms\Common\DlgTrainningBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Forms\Common\DlgTrainningBase.Designer.cs">
+      <DependentUpon>DlgTrainningBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Forms\DataMgr\FormNewPileType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Forms\DataMgr\FormNewPileType.Designer.cs">
+      <DependentUpon>FormNewPileType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Forms\DataMgr\FormPilesDataMgr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Forms\DataMgr\FormPilesDataMgr.Designer.cs">
+      <DependentUpon>FormPilesDataMgr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Forms\MemoryMethodIntroduction\FormPicChoiceMeaning.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Forms\MemoryMethodIntroduction\FormPicChoiceMeaning.Designer.cs">
+      <DependentUpon>FormPicChoiceMeaning.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Forms\MemoryMethodIntroduction\FormFlashCardGear.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Forms\MemoryMethodIntroduction\FormFlashCardGear.Designer.cs">
+      <DependentUpon>FormFlashCardGear.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Forms\MemoryMethodIntroduction\FormPilesExam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Forms\MemoryMethodIntroduction\FormPilesExam.Designer.cs">
+      <DependentUpon>FormPilesExam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Forms\MemoryMethodIntroduction\FormPilesLearn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Forms\MemoryMethodIntroduction\FormPilesLearn.Designer.cs">
+      <DependentUpon>FormPilesLearn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Forms\MemoryMethodIntroduction\FormTranscoding.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Forms\MemoryMethodIntroduction\FormTranscoding.Designer.cs">
+      <DependentUpon>FormTranscoding.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Forms\MemoryMethodIntroduction\PicChoiceMeaning\DlgPicChoicePileAction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Forms\MemoryMethodIntroduction\PicChoiceMeaning\DlgPicChoicePileAction.Designer.cs">
+      <DependentUpon>DlgPicChoicePileAction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Forms\MemoryMethodIntroduction\PicChoiceMeaning\DlgPicChoicePileBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Forms\MemoryMethodIntroduction\PicChoiceMeaning\DlgPicChoicePileBase.Designer.cs">
+      <DependentUpon>DlgPicChoicePileBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Forms\MemoryMethodIntroduction\PicChoiceMeaning\DlgPicChoicePileNumber.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Forms\MemoryMethodIntroduction\PicChoiceMeaning\DlgPicChoicePileNumber.Designer.cs">
+      <DependentUpon>DlgPicChoicePileNumber.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Forms\MemoryMethodIntroduction\PicChoiceMeaning\DlgPicChoicePileRole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Forms\MemoryMethodIntroduction\PicChoiceMeaning\DlgPicChoicePileRole.Designer.cs">
+      <DependentUpon>DlgPicChoicePileRole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Forms\MemoryMethodIntroduction\PicChoiceMeaning\DlgPicChoicePileWord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Forms\MemoryMethodIntroduction\PicChoiceMeaning\DlgPicChoicePileWord.Designer.cs">
+      <DependentUpon>DlgPicChoicePileWord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Forms\MemoryMethodIntroduction\PicChoiceMeaning\DlgReportTrainning.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Forms\MemoryMethodIntroduction\PicChoiceMeaning\DlgReportTrainning.Designer.cs">
+      <DependentUpon>DlgReportTrainning.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Forms\MemoryMethodIntroduction\PicChoiceMeaning\FadeOutPromptChoiceResult.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Forms\MemoryMethodIntroduction\PicChoiceMeaning\FadeOutPromptChoiceResult.Designer.cs">
+      <DependentUpon>FadeOutPromptChoiceResult.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Forms\MemoryMethodIntroduction\Transcoding\DlgTranscodingBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Forms\MemoryMethodIntroduction\Transcoding\DlgTranscodingBase.Designer.cs">
+      <DependentUpon>DlgTranscodingBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Forms\MemoryMethodIntroduction\Transcoding\DlgTranscodingNum2Action.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Forms\MemoryMethodIntroduction\Transcoding\DlgTranscodingNum2Action.Designer.cs">
+      <DependentUpon>DlgTranscodingNum2Action.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Forms\MemoryMethodIntroduction\Transcoding\DlgTranscodingNum2Role.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Forms\MemoryMethodIntroduction\Transcoding\DlgTranscodingNum2Role.Designer.cs">
+      <DependentUpon>DlgTranscodingNum2Role.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Forms\MemoryMethodIntroduction\Transcoding\DlgTranscodingNum2Word.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Forms\MemoryMethodIntroduction\Transcoding\DlgTranscodingNum2Word.Designer.cs">
+      <DependentUpon>DlgTranscodingNum2Word.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Forms\MemoryMethodIntroduction\Transcoding\DlgTranscodingPic2Action.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Forms\MemoryMethodIntroduction\Transcoding\DlgTranscodingPic2Action.Designer.cs">
+      <DependentUpon>DlgTranscodingPic2Action.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Forms\MemoryMethodIntroduction\Transcoding\DlgTranscodingPic2Num.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Forms\MemoryMethodIntroduction\Transcoding\DlgTranscodingPic2Num.Designer.cs">
+      <DependentUpon>DlgTranscodingPic2Num.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Forms\MemoryMethodIntroduction\Transcoding\DlgTranscodingPic2Role.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Forms\MemoryMethodIntroduction\Transcoding\DlgTranscodingPic2Role.Designer.cs">
+      <DependentUpon>DlgTranscodingPic2Role.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Forms\MemoryMethodIntroduction\Transcoding\DlgTranscodingPic2Word.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Forms\MemoryMethodIntroduction\Transcoding\DlgTranscodingPic2Word.Designer.cs">
+      <DependentUpon>DlgTranscodingPic2Word.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Forms\MemoryMethodIntroduction\Transcoding\DlgTranscodingWord2Action.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Forms\MemoryMethodIntroduction\Transcoding\DlgTranscodingWord2Action.Designer.cs">
+      <DependentUpon>DlgTranscodingWord2Action.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Forms\MemoryMethodIntroduction\Transcoding\DlgTranscodingWord2Role.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Forms\MemoryMethodIntroduction\Transcoding\DlgTranscodingWord2Role.Designer.cs">
+      <DependentUpon>DlgTranscodingWord2Role.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Common\ILeafPileTypeSelectOberver.cs" />
+    <Compile Include="Views\UserControls\Common\IPileView.cs" />
+    <Compile Include="Views\UserControls\Common\IRadioPileView.cs" />
+    <Compile Include="Views\UserControls\Common\IRadioPileViewGroup.cs" />
+    <Compile Include="Views\UserControls\Common\UcColorPercentProgresser.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\Common\UcColorPercentProgresser.Designer.cs">
+      <DependentUpon>UcColorPercentProgresser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Common\UcFormMainBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\Common\UcFormMainBase.Designer.cs">
+      <DependentUpon>UcFormMainBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Common\UcLeafPileTypesSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\Common\UcLeafPileTypesSelector.Designer.cs">
+      <DependentUpon>UcLeafPileTypesSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Common\UcPileViewBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\Common\UcPileViewBase.Designer.cs">
+      <DependentUpon>UcPileViewBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Common\UcRadioPileViewGroupBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\Common\UcRadioPileViewGroupBase.Designer.cs">
+      <DependentUpon>UcRadioPileViewGroupBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\DataMgr\Exam\UcExamLevels.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\DataMgr\Exam\UcExamLevels.Designer.cs">
+      <DependentUpon>UcExamLevels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\DataMgr\Exam\UcExamTree.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\DataMgr\Exam\UcExamTree.Designer.cs">
+      <DependentUpon>UcExamTree.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\DataMgr\Exam\UcLevelDetail.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\DataMgr\Exam\UcLevelDetail.Designer.cs">
+      <DependentUpon>UcLevelDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\DataMgr\UcNewPileType.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\DataMgr\UcNewPileType.Designer.cs">
+      <DependentUpon>UcNewPileType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\DataMgr\UcPilesDataMgr.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\DataMgr\UcPilesDataMgr.Designer.cs">
+      <DependentUpon>UcPilesDataMgr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\IPilesGroupView.cs" />
+    <Compile Include="Views\UserControls\Common\IPileOrderAreaSetObserver.cs" />
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\PlayConditionSet\IPlayGroupAmountSetObserver.cs" />
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\PlayConditionSet\IPlayIntervalSetObserver.cs" />
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\PlayConditionSet\IPlayOrderSetObserver.cs" />
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\PlayConditionSet\IPlayPrioritySetObserver.cs" />
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\PlayConditionSet\ITrainPeriodSetObserver.cs" />
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\PlayConditionSet\UcCbbSetBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\PlayConditionSet\UcCbbSetBase.Designer.cs">
+      <DependentUpon>UcCbbSetBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Common\UcPileOrderAreaSet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\Common\UcPileOrderAreaSet.Designer.cs">
+      <DependentUpon>UcPileOrderAreaSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\PlayConditionSet\UcPlayIntervalSet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\PlayConditionSet\UcPlayIntervalSet.Designer.cs">
+      <DependentUpon>UcPlayIntervalSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\PlayConditionSet\UcTrainPeriodSet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\PlayConditionSet\UcTrainPeriodSet.Designer.cs">
+      <DependentUpon>UcTrainPeriodSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\PlayControl\IPlayControlObserver.cs" />
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\PlayProgress\IProgresser.cs" />
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\PlayProgress\UcProgresserBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\PlayProgress\UcProgresserBase.Designer.cs">
+      <DependentUpon>UcProgresserBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\PlayProgress\UcStepProgresser.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\PlayProgress\UcStepProgresser.Designer.cs">
+      <DependentUpon>UcStepProgresser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\PlayProgress\UcTraningProgresser.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\PlayProgress\UcTraningProgresser.Designer.cs">
+      <DependentUpon>UcTraningProgresser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\UcPileGroupOne.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\UcPileGroupOne.Designer.cs">
+      <DependentUpon>UcPileGroupOne.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\UcPileGroupThree.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\UcPileGroupThree.Designer.cs">
+      <DependentUpon>UcPileGroupThree.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\UcPileGroupTwo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\UcPileGroupTwo.Designer.cs">
+      <DependentUpon>UcPileGroupTwo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\UcPilesFlashCardGear.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\UcPilesFlashCardGear.Designer.cs">
+      <DependentUpon>UcPilesFlashCardGear.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\PlayConditionSet\UcPlayGroupAmountSet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\PlayConditionSet\UcPlayGroupAmountSet.Designer.cs">
+      <DependentUpon>UcPlayGroupAmountSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\PlayControl\UcPlayController.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\PlayControl\UcPlayController.Designer.cs">
+      <DependentUpon>UcPlayController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\PlayConditionSet\UcPlayOrderSet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\PlayConditionSet\UcPlayOrderSet.Designer.cs">
+      <DependentUpon>UcPlayOrderSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\PlayConditionSet\UcPlayPrioritySet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\PlayConditionSet\UcPlayPrioritySet.Designer.cs">
+      <DependentUpon>UcPlayPrioritySet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\UcPileView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\FlashCardGear\UcPileView.Designer.cs">
+      <DependentUpon>UcPileView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\PicChoiceMeaning\UcChoiceGroup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\PicChoiceMeaning\UcChoiceGroup.Designer.cs">
+      <DependentUpon>UcChoiceGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\PicChoiceMeaning\UcChoiceOne.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\PicChoiceMeaning\UcChoiceOne.Designer.cs">
+      <DependentUpon>UcChoiceOne.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\PicChoiceMeaning\UcGroupCountDownViewAlpha.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\PicChoiceMeaning\UcGroupCountDownViewAlpha.Designer.cs">
+      <DependentUpon>UcGroupCountDownViewAlpha.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\PicChoiceMeaning\UcPicChoicePileChoicePart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\PicChoiceMeaning\UcPicChoicePileChoicePart.Designer.cs">
+      <DependentUpon>UcPicChoicePileChoicePart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\PicChoiceMeaning\UcPicChoicePileMain.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\PicChoiceMeaning\UcPicChoicePileMain.Designer.cs">
+      <DependentUpon>UcPicChoicePileMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\PicChoiceMeaning\UcPilePicView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\PicChoiceMeaning\UcPilePicView.Designer.cs">
+      <DependentUpon>UcPilePicView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\PilesLearn\UcPielsLearn.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\PilesLearn\UcPielsLearn.Designer.cs">
+      <DependentUpon>UcPielsLearn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\PicChoiceMeaning\UcPicChoiceMeaningSetting.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\PicChoiceMeaning\UcPicChoiceMeaningSetting.Designer.cs">
+      <DependentUpon>UcPicChoiceMeaningSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Common\UcRadioPileViewBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\Common\UcRadioPileViewBase.Designer.cs">
+      <DependentUpon>UcRadioPileViewBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\Transcoding\IPileGroupView.cs" />
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\Transcoding\ITranscodingPanel.cs" />
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\Transcoding\UcBottomPilesGroup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\Transcoding\UcBottomPilesGroup.Designer.cs">
+      <DependentUpon>UcBottomPilesGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\Transcoding\UcTopPilesGroup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\Transcoding\UcTopPilesGroup.Designer.cs">
+      <DependentUpon>UcTopPilesGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\Transcoding\UcTranscodingPanelBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\Transcoding\UcTranscodingPanelBase.Designer.cs">
+      <DependentUpon>UcTranscodingPanelBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\Transcoding\UcTranscodingPart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\Transcoding\UcTranscodingPart.Designer.cs">
+      <DependentUpon>UcTranscodingPart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\Transcoding\UcTranscodingSetting.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControls\MemoryMethodIntroduction\Transcoding\UcTranscodingSetting.Designer.cs">
+      <DependentUpon>UcTranscodingSetting.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow-left-3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Enums\ClassDiagram1.cd" />
+    <None Include="Model\Biz\MemoryMethodIntroduction\FlashCardGear\ClassDiagram1.cd" />
+    <None Include="Resources\arrow-right-3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow-down-3.png" />
+    <Content Include="Resources\arrow-down.png" />
+    <None Include="Resources\arrow-up-3.png" />
+    <Content Include="Resources\dialog-apply.png" />
+    <Content Include="Resources\dialog-cancel-3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\Common\" />
+    <Folder Include="Views\Forms\DataMgr\Exam\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
